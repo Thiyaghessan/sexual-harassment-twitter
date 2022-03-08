@@ -45,7 +45,7 @@ def main_cleaner(name, congress=False):
     This function cleans data from our biographies of women in senate and congress
     Relevant csv: congress_women.csv, senate_women.csv
     """
-    df = pd.read_csv(name + ".csv")
+    df = pd.read_csv("Data/" + name + ".csv")
     df[["state_name", "state"]] = df.state.str.split(" - ",
                                                      expand=True)
     df = df.rename(columns={"District": "district"})
@@ -59,7 +59,7 @@ def cleaner(name, feature):
     This function cleans data from the GovTrack USA Website with ideology and leadership scores
     Relevant csv: senate_ideology.csv, senate_leadership.csv, congress_ideology.csv, congress_leadership.csv
     """
-    df = pd.read_csv(name + ".csv")
+    df = pd.read_csv("Data/" + name + ".csv")
     df["name"] = df["name"].str.replace(r"^b'", "", regex=True)
     df["name"] = df["name"].str.replace(r"'", "", regex=True)
     df["name"] = df["name"].str.replace(r"\\xc3\\xa1", "a", regex=True)
