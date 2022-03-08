@@ -13,7 +13,7 @@
 
 ### Data
 We scraped over 400,000 twitter mentions for 146 female senators, and used data from Congress.gov and GovTrack USA to conduct further analysis
-All the data used for this project can be found under the "Data" folder, and the raw urls used for to twitter profiles of female senators, and other data can be found under the folder "Scraping tweets -data+code".
+All the data used for this project can be found under the "Data" folder, and the raw urls used for to twitter profiles of female senators, and other data can be found under the folder "Scraping tweets -data+code". The trained topic models cab be found under "ldamodels".
 
 ### Code
 The code used for the models and data analysis and their respective folders can be found as mentioned below.
