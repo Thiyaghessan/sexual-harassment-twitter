@@ -30,12 +30,18 @@ df_log['Count_l'] = np.log(df_log['Count'])
 state_df = df_log[['state', 'Count_l']]
 state_df = state_df.groupby(['state']).sum()
 state_df = state_df.reset_index()
+df = df.rename(columns={"state": "State", "party": "Party", 'ideology': 'Ideology', 'leadership':"Leadership"})
+
+
+###############################################
+
+
 
 app = dash.Dash(
     __name__,
     meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}]
 )
-app.title = "Women In Politics & Sexist Tweets"
+app.title = "Women In Politics & Misogynistic Tweets"
 server = app.server 
 
 image_filename = './wordcloud.png'
@@ -65,14 +71,15 @@ fig.update_layout(
 fig.update_layout(
     title_font_family="Helvetica",
     title_font_color="#dadfeb",
-    font=dict(size=16)
+    font=dict(size=14)
 )
+fig.update_traces(marker_color='#2e75e6')
 
 
 fig2 = px.histogram(df_log, x="leadership", y="Count_l", nbins=5,
                 hover_name="Full Name", labels=dict(leadership="Leadership Score", Count_l="Number of Tweets"))
 fig2.update_xaxes(showgrid=False)
-fig2.update_yaxes(showgrid=False)
+fig2.update_yaxes(showgrid=True)
 fig2.update_yaxes(title_text='Number of Tweets (logged)')
 fig2.update_xaxes(title_font=dict(size=14, color='#dadfeb', family='Helvetica'))
 fig2.update_yaxes(title_font=dict(size=14, color='#dadfeb', family='Helvetica'))
@@ -90,23 +97,24 @@ fig2.update_layout(
 fig2.update_layout(
     title_font_family="Helvetica",
     title_font_color="#dadfeb",
-    font=dict(size=16)
+    font=dict(size=14)
 )
+fig2.update_traces(marker_color='#2e75e6')
 
 
 fig3 = px.choropleth(state_df,
                     locations='state',
                     color='Count_l',
                     color_continuous_scale='blues',
-                    hover_name='Count_l',
+                    hover_name='state',
                     locationmode='USA-states',
-                    labels={'Current Unemployment Rate':'Unemployment Rate %'},
+                    labels={'Tweets per State'},
                     scope='usa')
 fig3.update_xaxes(showgrid=False)
 fig3.update_yaxes(showgrid=False)
 fig3.update_layout(
     title={
-        'text': "A Map!",
+        'text': "Number of Tweets By State of Politician",
         'y':0.9,
         'x':0.5,
         'xanchor': 'center',
@@ -115,8 +123,19 @@ fig3.update_layout(
 fig3.update_layout(
     title_font_family="Helvetica",
     title_font_color="#dadfeb",
-    font=dict(size=16)
+    font=dict(size=14)
 )
+fig3.update_layout(coloraxis_colorbar=dict(
+        title="",
+        len = .5,
+        tickvals=[0.2, 5.481784],
+        tickfont={"color":'#dadfeb'},
+        ticktext=[
+            "Least Tweets", "Most Tweets"]))
+
+
+
+
 
 fig.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)',
 })
@@ -130,8 +149,8 @@ fig3.update_geos(bgcolor="rgba(0, 0, 0, 0)", lakecolor="#011c47")
 
 app.layout = html.Div(children=[
     html.Div(children=[
-        html.H1(children='Women In Politics & Sexist Tweets'),
-        html.H2(children='Classifying Digital Misogyny')],
+        html.H1(children='Women in Politics and Misogynistic Tweets: Classifying Misogyny'),
+        html.H2(children='In the run up to the 2020 election, to what extent is misogynistic rhetoric directed at women running for office on Twitter in the United States?')],
     className='app__header'),
     html.Div(children=[
         html.Div(children=[
@@ -156,7 +175,8 @@ app.layout = html.Div(children=[
                 )
             ], className='half graph-container'),
             html.Div(children=[
-                html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()), style={ 'max-width': '100%' })
+                html.H3(children='Most Commonly Found Words in Misogynistic Tweets'),
+                html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()), style={ 'text-align': 'center', 'max-width': '80%'})
             ], className='half')
         ], className='row'),
         html.Div(children=[
