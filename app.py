@@ -27,9 +27,10 @@ df["leadership"] = df["leadership"].round(decimals = 3)
 df_log = df.copy()
 df_log['Count_l'] = np.log(df_log['Count'])
 
-state_df = df_log[['state', 'Count_l']]
+state_df = df_log[['state', 'Count', 'Count_l']]
 state_df = state_df.groupby(['state']).sum()
 state_df = state_df.reset_index()
+
 df = df.rename(columns={"state": "State", "party": "Party", 'ideology': 'Ideology', 'leadership':"Leadership"})
 
 
@@ -107,6 +108,7 @@ fig3 = px.choropleth(state_df,
                     color='Count_l',
                     color_continuous_scale='blues',
                     hover_name='state',
+                    hover_data=['Count'],
                     locationmode='USA-states',
                     labels={'Tweets per State'},
                     scope='usa')
@@ -131,8 +133,8 @@ fig3.update_layout(coloraxis_colorbar=dict(
         tickfont={"color":'#dadfeb'},
         ticktext=[
             "Least Tweets", "Most Tweets"]))
-
-
+fig3.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+fig3.update_layout(coloraxis_showscale=False)
 
 
 
@@ -144,7 +146,7 @@ fig2.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0
 
 fig3.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 'paper_bgcolor': 'rgba(0, 0, 0, 0)',
 })
-fig3.update_geos(bgcolor="rgba(0, 0, 0, 0)", lakecolor="#011c47")
+fig3.update_geos(bgcolor="rgba(0, 0, 0, 0)", showlakes=False)
 
 app.layout = html.Div(children=[
     html.Div(children=[
