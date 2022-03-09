@@ -23,7 +23,7 @@ warnings.filterwarnings("ignore")
 # ideology and leadership scores, etc).
 
 
-df = pd.read_csv("./pred.csv")
+df = pd.read_csv("./final_data/pred.csv")
 df = df[df["Predicted"] == 0]
 df = df[["candidate_user_name", "pol_party"]]
 df["Count"] = df.groupby(["candidate_user_name"])["pol_party"].transform("count")
@@ -33,7 +33,7 @@ df = df.drop_duplicates()
 # Read in data from misogynistic tweets from our Classifier.
 
 
-miso_df = pd.read_csv("./misogynistic_tweets.csv")
+miso_df = pd.read_csv("./final_data/misogynistic_tweets.csv")
 miso_df = miso_df[
     [
         "Full Name",
@@ -118,7 +118,7 @@ app = dash.Dash(
 app.title = "Women In Politics & Misogynistic Tweets"
 server = app.server
 
-IMAGE = "./wordcloud.png"
+IMAGE = "./assets/wordcloud.png"
 encoded_image = base64.b64encode(open(IMAGE, "rb").read())
 
 
