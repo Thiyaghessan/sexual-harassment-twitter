@@ -127,7 +127,6 @@ fig3.update_layout(
 )
 fig3.update_layout(coloraxis_colorbar=dict(
         title="",
-        len = .5,
         tickvals=[0.2, 5.481784],
         tickfont={"color":'#dadfeb'},
         ticktext=[
