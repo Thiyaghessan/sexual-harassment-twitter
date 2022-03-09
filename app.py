@@ -23,6 +23,7 @@ df = df[["Full Name", "state", "party", "Position", "candidate_user_name", "ideo
 df = df.sort_values(['Count'], ascending=False)
 df["ideology"] = df["ideology"].round(decimals = 3)
 df["leadership"] = df["leadership"].round(decimals = 3)
+df = df.groupby(["Full Name", "state", "party", "Position", "ideology", "leadership"],as_index=False).agg({'Count': 'sum'})
 
 df_log = df.copy()
 df_log['Count_l'] = np.log(df_log['Count'])
@@ -177,7 +178,8 @@ app.layout = html.Div(children=[
             ], className='half graph-container'),
             html.Div(children=[
                 html.H3(children='Most Commonly Found Words in Misogynistic Tweets'),
-                html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()), style={ 'text-align': 'center', 'max-width': '80%'})
+                html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()), 
+                         style={ 'text-align': 'center', 'max-width': '100%'})
             ], className='half')
         ], className='row'),
         html.Div(children=[
