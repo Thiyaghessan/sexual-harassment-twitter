@@ -21,7 +21,7 @@ The code used for the models and data analysis and their respective folders can 
 2. LDA Topic Model : Topic_Model_Final.ipynb
 3. Metadata Cleaning, Word cloud, and Linear Regression : Wordcloud_Regression.ipynb
 4. Dashboard and data visualization : Visualization.ipynb
-5. Wordclouds, regression, and LDA topic model weights : util.py
+5. Functions used in Wordcloud_Regression.ipynb : util.py
 6. Files for Heroku App hosting : requirements.txt, app.py, runtime.txt, Procfile, .gitignore
 
 ### Visualization Link
