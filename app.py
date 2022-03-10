@@ -1,10 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Mar  9 16:15:09 2022
-
-@author: allisontowey
-"""
+#!/usr/bin/env python
+# coding: utf-8
 
 import base64
 import warnings
@@ -14,6 +9,7 @@ import plotly.express as px
 from dash.dependencies import Input, Output
 import dash
 from dash import dash_table, dcc, html
+
 warnings.filterwarnings("ignore")
 
 
@@ -23,7 +19,7 @@ warnings.filterwarnings("ignore")
 # ideology and leadership scores, etc).
 
 
-df = pd.read_csv("./final_data/pred.csv")
+df = pd.read_csv("./Data/pred.csv")
 df = df[df["Predicted"] == 0]
 df = df[["candidate_user_name", "pol_party"]]
 df["Count"] = df.groupby(["candidate_user_name"])["pol_party"].transform("count")
@@ -33,7 +29,7 @@ df = df.drop_duplicates()
 # Read in data from misogynistic tweets from our Classifier.
 
 
-miso_df = pd.read_csv("./final_data/misogynistic_tweets.csv")
+miso_df = pd.read_csv("./Data/misogynistic_tweets.csv")
 miso_df = miso_df[
     [
         "Full Name",
@@ -121,6 +117,8 @@ server = app.server
 IMAGE = "./assets/wordcloud.png"
 encoded_image = base64.b64encode(open(IMAGE, "rb").read())
 
+PAGE_SIZE = 10
+
 
 # ### Create Figures Using Plotly
 
@@ -134,16 +132,15 @@ encoded_image = base64.b64encode(open(IMAGE, "rb").read())
 fig = px.histogram(
     df_log,
     x="ideology",
-    y="Count_l",
-    nbins=5,
+    y="Count",
+    log_y=True,
+    range_x=[-0.1, 1.1],
     hover_name="Full Name",
-    labels=dict(ideology="Ideology Score", Count_l="Number of Tweets"),
+    labels=dict(ideology="Ideology Score", Count="Number of Tweets"),
 )
 
 fig.update_xaxes(
-    range=[0, 1],
     tickvals=[0.2, 0.4, 0.6, 0.8, 1.0],
-    autorange=False,
     tickfont=dict(color="white", size=12, family="Helvetica"),
     title_font=dict(size=14, color="#dadfeb", family="Helvetica"),
     showgrid=False,
@@ -151,7 +148,7 @@ fig.update_xaxes(
 
 
 fig.update_yaxes(
-    title_text="Number of Tweets (logged)",
+    title_text="Number of Tweets",
     title_font=dict(size=14, color="#dadfeb", family="Helvetica"),
     showgrid=True,
     tickfont=dict(color="#dadfeb", size=12, family="Helvetica"),
@@ -171,7 +168,11 @@ fig.update_layout(
 )
 
 fig.update_layout(
-    {"plot_bgcolor": "rgba(0, 0, 0, 0)", "paper_bgcolor": "rgba(0, 0, 0, 0)"}
+    {
+        "plot_bgcolor": "rgba(0, 0, 0, 0)",
+        "paper_bgcolor": "rgba(0, 0, 0, 0)",
+        "yaxis": {"gridcolor": "#0c2b5c"},
+    }
 )
 
 fig.update_traces(marker_color="#2e75e6")
@@ -184,14 +185,15 @@ fig.update_traces(marker_color="#2e75e6")
 fig2 = px.histogram(
     df_log,
     x="leadership",
-    y="Count_l",
-    nbins=5,
+    y="Count",
+    log_y=True,
+    range_x=[-0.1, 1.1],
     hover_name="Full Name",
-    labels=dict(leadership="Leadership Score", Count_l="Number of Tweets"),
+    labels=dict(leadership="Leadership Score", Count="Number of Tweets"),
 )
 
 fig2.update_yaxes(
-    title_text="Number of Tweets (logged)",
+    title_text="Number of Tweets",
     title_font=dict(size=14, color="#dadfeb", family="Helvetica"),
     showgrid=True,
     tickfont=dict(family="Helvetica", color="#dadfeb", size=12),
@@ -220,7 +222,11 @@ fig2.update_layout(
 )
 
 fig2.update_layout(
-    {"plot_bgcolor": "rgba(0, 0, 0, 0)", "paper_bgcolor": "rgba(0, 0, 0, 0)"}
+    {
+        "plot_bgcolor": "rgba(0, 0, 0, 0)",
+        "paper_bgcolor": "rgba(0, 0, 0, 0)",
+        "yaxis": {"gridcolor": "#0c2b5c"},
+    }
 )
 
 fig2.update_traces(marker_color="#2e75e6")
@@ -298,15 +304,24 @@ app.layout = html.Div(
                     children=[
                         html.Div(
                             children=[
-                                dcc.Graph(id="ideology", figure=fig)
-                                # html.P(children='Ideology Scores from \
-                                # GovTrack USA. Scale 0: Most Liberal to 1:\
-                                # Most Conservative')
+                                dcc.Graph(id="ideology", figure=fig),
+                                html.P(
+                                    children="Ideology Scores from GovTrack \
+                                        USA. Scale 0: Most Liberal to 1: Most \
+                                            Conservative"
+                                ),
                             ],
                             className="half graph-container",
                         ),
                         html.Div(
-                            children=[dcc.Graph(id="map", figure=fig3)],
+                            children=[
+                                dcc.Graph(id="map", figure=fig3),
+                                html.P(
+                                    children="Darker colored states denote \
+                                        states with politicians with more \
+                                            tweets identified."
+                                ),
+                            ],
                             className="half graph-container",
                         ),
                     ],
@@ -316,11 +331,13 @@ app.layout = html.Div(
                     children=[
                         html.Div(
                             children=[
-                                dcc.Graph(id="leadership", figure=fig2)
-                                # html.P(children='Leadership Scores from \
-                                # GovTrack USA. Scale 0: Least Likely to \
-                                # Sponsor Legislation/Hold Leadership Roles \
-                                # to 1: Most Likely')
+                                dcc.Graph(id="leadership", figure=fig2),
+                                html.P(
+                                    children="Leadership Scores from GovTrack \
+                                        USA. Scale 0: Least Likely to Sponsor \
+                                            Legislation/Hold Leadership Roles \
+                                                to 1: Most Likely"
+                                ),
                             ],
                             className="half graph-container",
                         ),
@@ -335,7 +352,7 @@ app.layout = html.Div(
                                         encoded_image.decode()
                                     ),
                                     style={"text-align": "center",
-                                           "max-width": "80%"},
+                                           "max-width": "100%"},
                                 ),
                             ],
                             className="half",
@@ -363,7 +380,7 @@ app.layout = html.Div(
                                     data=df.to_dict("records"),
                                     style_data={"border": "1px solid #dadfeb"},
                                     page_current=0,
-                                    page_size=10,
+                                    page_size=PAGE_SIZE,
                                     page_action="custom",
                                     sort_action="custom",
                                     sort_mode="single",
@@ -391,7 +408,7 @@ app.layout = html.Div(
 )
 def update_table(page_current, page_size, sort_by):
     '''
-    Updates tables based on user filtering.
+    User-defined filtration of data table
     '''
     if len(sort_by):
         dff = df.sort_values(
@@ -403,8 +420,7 @@ def update_table(page_current, page_size, sort_by):
         # No sort is applied
         dff = df
 
-    return dff.iloc[page_current * page_size : (page_current + 1)\
-                    * page_size].to_dict(
+    return dff.iloc[page_current * page_size : (page_current + 1) * page_size].to_dict(
         "records"
     )
 
