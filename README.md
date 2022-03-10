@@ -24,4 +24,4 @@ The code used for the models and data analysis and their respective folders can 
 5. Final data analysis : Final_Project_Analysis.ipynb
 6. Dashboard and data visualization : Visualization.ipynb
 7. Wordclouds, regression, and LDA topic model weights : util.py
-8. Files for Heroku App hosting : requirements.txt, app.py, runtime.txt, Procfile, .gitignore, 
+8. Files for Heroku App hosting : requirements.txt, app.py, runtime.txt, Procfile, .gitignore
