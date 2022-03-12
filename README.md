@@ -22,7 +22,7 @@ The code used for the models and data analysis and their respective folders can 
 3. Metadata Cleaning, Word cloud, and Linear Regression : Wordcloud_Regression.ipynb
 4. Dashboard and data visualization : Visualization.ipynb
 5. Functions used in Wordcloud_Regression.ipynb : util.py
-6. Files for Heroku App hosting : requirements.txt, app.py, runtime.txt, Procfile, .gitignore
+6. Files for Heroku App hosting : requirements.txt, app.py, runtime.txt, Procfile, .gitignore, assets
 
 ### Visualization Link
 https://twittermisogyny.herokuapp.com/
