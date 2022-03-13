@@ -17,12 +17,13 @@ All the data used for this project can be found under the "Data" folder, and the
 
 ### Code
 The code used for the models and data analysis and their respective folders can be found as mentioned below.
-1. BERT model : BERT_Classifier_Final.ipynb
-2. LDA Topic Model : Topic_Model_Final.ipynb
-3. Metadata Cleaning, Word cloud, and Linear Regression : Wordcloud_Regression.ipynb
-4. Dashboard and data visualization : Visualization.ipynb
-5. Functions used in Wordcloud_Regression.ipynb : util.py
-6. Files for Heroku App hosting : requirements.txt, app.py, runtime.txt, Procfile, .gitignore, assets
+1. Scraping twitter mentions: Scraping_tweets.ipynb in the folder "Scraping tweets- data+code
+2. BERT model : BERT_Classifier_Final.ipynb
+3. LDA Topic Model : Topic_Model_Final.ipynb
+4. Metadata Cleaning, Word cloud, and Linear Regression : Wordcloud_Regression.ipynb
+5. Dashboard and data visualization : Visualization.ipynb
+6. Functions used in Wordcloud_Regression.ipynb : util.py
+7. Files for Heroku App hosting : requirements.txt, app.py, runtime.txt, Procfile, .gitignore, assets
 
 ### Visualization Link
 https://twittermisogyny.herokuapp.com/
