@@ -17,7 +17,7 @@ All the data used for this project can be found under the "Data" folder, and the
 
 ### Code
 The code used for the models and data analysis and their respective folders can be found as mentioned below.
-1. Scraping twitter mentions: Scraping_tweets.ipynb in the folder "Scraping tweets- data+code
+1. Scraping twitter mentions: Scraping_tweets.ipynb in the folder "Scraping tweets- data+code. The file might be slightly different from what was shown in the video to increase readability. However, only markdowns and comments were changed, and not the actual code.
 2. BERT model : BERT_Classifier_Final.ipynb
 3. LDA Topic Model : Topic_Model_Final.ipynb
 4. Metadata Cleaning, Word cloud, and Linear Regression : Wordcloud_Regression.ipynb
