@@ -33,3 +33,4 @@ Packages required to run each notebook.
           (nltk, 3.2.5), (sklearn, 1.0.2)
 2. Topic Model: (gensim, 4.1.2), (sklearn, 0.23.2), (numpy, 1.19.2), (pandas, 1.1.3), 
                 (nltk, 3.5), (wordcloud, 1.8.1), (pyLDAvis, 3.3.1)
+3. Data Visualization : (pandas, 1.4.1), (numpy, 1.20.3), (dash, 2.2.0), (base64, 1.0.0), (plotly, 5.6.0), (dash-bootstrap-components, 1.0.3), (dash-core-                                    components, 2.0.0), (dash-html-components, 2.0.0),(dash-table, 5.0.0)
