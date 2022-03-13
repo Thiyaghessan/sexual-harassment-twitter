@@ -26,3 +26,10 @@ The code used for the models and data analysis and their respective folders can 
 
 ### Visualization Link
 https://twittermisogyny.herokuapp.com/
+
+### Packages 
+Packages required to run each notebook. 
+1. BERT : (pandas, 1.3.5), (numpy, 1.21.5), (keras, 2.8.0), (tensorflow, 2.8.0), 
+          (nltk, 3.2.5), (sklearn, 1.0.2)
+2. Topic Model: (gensim, 4.1.2), (sklearn, 0.23.2), (numpy, 1.19.2), (pandas, 1.1.3), 
+                (nltk, 3.5), (wordcloud, 1.8.1), (pyLDAvis, 3.3.1)
