@@ -27,6 +27,9 @@ The code used for the models and data analysis and their respective folders can 
 ### Visualization Link
 https://twittermisogyny.herokuapp.com/
 
+### Code Overview Video Link
+https://drive.google.com/file/d/1J39UnD9S6Pad5nzrKUpiNHVBrt2L8c86/view?usp=sharing
+
 ### Packages 
 Packages required to run each notebook. 
 1. BERT : (pandas, 1.3.5), (numpy, 1.21.5), (keras, 2.8.0), (tensorflow, 2.8.0), 
