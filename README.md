@@ -32,7 +32,7 @@ https://drive.google.com/file/d/1J39UnD9S6Pad5nzrKUpiNHVBrt2L8c86/view?usp=shari
 
 ### Packages 
 Packages required to run each notebook. 
-1. Scraping data from Twitter: (Twint, 2.1.21), (pandas, 1.2.4). In order to be able to scrape data for more that one day using twint, one would have to uncomment                                  line 92 from the url.py file of the downloaded package. This can be done by typing "pip3 show twint" in the terminal, changing the                                      directory to that path, and editing the url.py file using nano, vim or any suitable text editor.  
+1. Scraping data from Twitter: (Twint, 2.1.21), (pandas, 1.2.4). In order to be able to scrape data for more than one day using twint, one would have to uncomment                                  line 92 from the url.py file of the downloaded package. This can be done by typing "pip3 show twint" in the terminal, changing the                                      directory to that path, and editing the url.py file using nano, vim or any suitable text editor.  
 2. BERT : (pandas, 1.3.5), (numpy, 1.21.5), (keras, 2.8.0), (tensorflow, 2.8.0), 
           (nltk, 3.2.5), (sklearn, 1.0.2)
 3. Topic Model: (gensim, 4.1.2), (sklearn, 0.23.2), (numpy, 1.19.2), (pandas, 1.1.3), 
