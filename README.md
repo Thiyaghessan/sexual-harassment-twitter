@@ -22,7 +22,14 @@ The code used for the models and data analysis and their respective folders can 
 3. Metadata Cleaning, Word cloud, and Linear Regression : Wordcloud_Regression.ipynb
 4. Dashboard and data visualization : Visualization.ipynb
 5. Functions used in Wordcloud_Regression.ipynb : util.py
-6. Files for Heroku App hosting : requirements.txt, app.py, runtime.txt, Procfile, .gitignore
+6. Files for Heroku App hosting : requirements.txt, app.py, runtime.txt, Procfile, .gitignore, assets
 
 ### Visualization Link
 https://twittermisogyny.herokuapp.com/
+
+### Packages 
+Packages required to run each notebook. 
+1. BERT : (pandas, 1.3.5), (numpy, 1.21.5), (keras, 2.8.0), (tensorflow, 2.8.0), 
+          (nltk, 3.2.5), (sklearn, 1.0.2)
+2. Topic Model: (gensim, 4.1.2), (sklearn, 0.23.2), (numpy, 1.19.2), (pandas, 1.1.3), 
+                (nltk, 3.5), (wordcloud, 1.8.1), (pyLDAvis, 3.3.1)
